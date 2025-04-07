@@ -1,0 +1,35 @@
+<h1>Création d'événement</h1>
+
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <fieldset>
+    <legend>Détails de l'événement</legend>
+
+    <!-- Name -->
+    <div>
+      <label for="name">Nom :</label>
+      <input type="text" id="name" formControlName="name" />
+      <p *ngIf="myForm.get('name')?.hasError('required') && myForm.get('name')?.touched" style="color:red;">
+        Le nom est requis.
+      </p>
+      <p *ngIf="myForm.get('name')?.hasError('minlength') && myForm.get('name')?.touched" style="color:red;">
+        Le nom doit contenir au moins 2 caractères.
+      </p>
+      <p *ngIf="myForm.get('name')?.hasError('maxlength') && myForm.get('name')?.touched" style="color:red;">
+        Le nom doit contenir au maximum 16 caractères.
+      </p>
+    </div>
+
+    <!-- Description -->
+    <div>
+      <label for="description">Description :</label>
+      <textarea id="description" rows="4" formControlName="description"></textarea>
+    
+    </div>
+
+  </fieldset>
+
+  <!-- Submit -->
+  <div>
+    <button type="submit" [disabled]="myForm.invalid">Créer l'événement</button>
+  </div>
+</form>
