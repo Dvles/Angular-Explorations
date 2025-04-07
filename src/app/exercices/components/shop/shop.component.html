@@ -1,0 +1,6 @@
+<h1>Exercice : La shopping liste</h1>
+<h2>Les input/output</h2>
+<!-- La ligne suivante permet de voir le contenu de la liste sous forme de JSON -->
+<!-- <p>{{shopList|json}}</p> -->
+<app-shop-add-product (productNameEmitter)="addProductInShopList($event)"></app-shop-add-product>
+<app-shop-list [shopList]="shopList" (productRemoveEmitter)="removeProductInShopList($event)"></app-shop-list>

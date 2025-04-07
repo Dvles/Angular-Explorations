@@ -1,0 +1,43 @@
+<nav>
+    <ul>
+        <!--<li>
+            <a routerLink="/">Accueil</a>
+        </li>
+        <li>
+            <a routerLink="/demos">Section : Démonstrations</a>
+            <ul>
+                <li>
+                    <a routerLink="/demos/demo01">Démonstration 01 : Les composants</a>
+                </li>
+                <li>
+                    <a routerLink="/demos/demo02">Démonstration 02 : Les composants</a>
+                </li>
+                <li>
+                    <a routerLink="/demos/demo03">Démonstration 03 : Le binding</a>
+                </li>
+                <li>
+                    <a routerLink="/demos/demo04">Démonstration 04 : Les pipes</a>
+                </li>
+                <li>
+                    <a routerLink="/demos/demo05">Démonstration 05 : Les directives</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a routerLink="/exos">Section : Exercices</a>
+            <ul>
+                <li>
+                    <a routerLink="/exos/chrono">Exercice 01 : Le chronomètre (Binding + Pipe)</a>
+                </li>
+            </ul>
+        </li>-->
+        <ng-container *ngFor="let link of links">
+            <app-nav-link-with-children [link]="link" *ngIf="link.children && link.children.length > 0; else simplelink"></app-nav-link-with-children>
+            <ng-template #simplelink>
+                <app-nav-link [link]="link"></app-nav-link>
+            </ng-template>
+        </ng-container>
+    </ul>
+</nav>
+
+

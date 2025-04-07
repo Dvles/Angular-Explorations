@@ -1,0 +1,16 @@
+<h1>{{title}}</h1>
+<h2>Voir page {{numPage}}</h2>
+
+<h3>Property-Binding</h3>
+<input type="text" [(ngModel)]="userInput">
+<p>Vous avez tapé : {{userInput}}</p>
+
+<h3>Event-Binding</h3>
+<p>Le bouton suivant permet d'augmenter un compteur. En utilisant le binding d'événement.</p>
+<button (click)="AddCount()">{{count}}</button>
+
+<h3>Attribute-Binding</h3>
+<p>Le bouton suivant permet d'augmenter un compteur. En utilisant le binding d'événement, mais celui-ci sera désactivé à partir du moment où nous atteignons la valeur de 10 ou plus, ceci grace au binding d'attribut.</p>
+<button (click)="AddCount()" [disabled]="count >= 10">{{count}}</button>
+
+<p [style]="{ fontSize : (count+10)+'px' }">Ce texte grandi selon la valeur du compteur.</p>

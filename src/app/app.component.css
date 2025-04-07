@@ -1,0 +1,22 @@
+h1, h2{
+    color : rgb(255, 85, 24)
+}
+
+main{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+main>div{
+    flex-grow: 0;
+}
+
+#content-container{
+    width: 70%;
+}
+
+#nav-container{
+    width: 20%;
+}

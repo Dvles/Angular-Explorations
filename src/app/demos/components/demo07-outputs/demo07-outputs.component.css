@@ -1,0 +1,8 @@
+div{
+    background-color: red;
+    padding: 10px;
+}
+
+input[disabled]{
+    color: white;
+}

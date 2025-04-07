@@ -1,0 +1,9 @@
+.childMenu{
+    overflow: hidden;
+    transition: all 1s;
+    max-height: 100vh;
+}
+
+.hiddenMenu{
+    max-height: 0;
+}

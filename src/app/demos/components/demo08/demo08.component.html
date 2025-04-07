@@ -1,0 +1,25 @@
+<h1>Démonstration 08 - Les formulaires</h1>
+
+<p>Créons des formulaires réactifs!</p>
+
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <fieldset>
+        <legend>Responsable : </legend>
+        <!-- div*3>label+input -->
+        <div>
+            <label for="firstName">Prénom :</label>
+            <input type="text" id="firstName" formControlName="firstName">
+        </div>
+        <div>
+            <label for="lastName">Nom de famille :</label>
+            <input type="text" id="lastName" formControlName="lastName">
+        </div>
+        <div>
+            <label for="birthDate">Date de naissance : </label>
+            <input type="date" id="birthDate" formControlName="birthDate">
+        </div>
+    </fieldset>
+    <div>
+        <button type="submit">Enregistrer</button>
+    </div>
+</form>

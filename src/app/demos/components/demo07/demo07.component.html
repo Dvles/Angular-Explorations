@@ -1,0 +1,18 @@
+<h1>Démonstration 07 : Les services</h1>
+<h2>Service fonctionnel</h2>
+
+<p>Dans ce composant, j'ai une donnée de type numérique : nb ; mais je n'ai pas les fonctions permettant de traiter la donnée.</p>
+<p>Pas grave, j'appelle un service défini pour manipuler et fournir les fonctions nécessaires.</p>
+
+<input type="number" placeholder="Veuiller introduire un nombre" [(ngModel)]="nb">
+<p>Le carré de notre nombre est : {{squareResult}}</p>
+<button (click)="serviceSquare()">Mettre au carré</button>
+
+<h2>Service transmission</h2>
+
+<p>Un service peut enmagasiner des données à travers les composants, et les redistribuer.</p>
+<p>Cela nous permet d'éviter un nombre conséquent d'Input/Output entre composants.</p>
+
+<p>Voici 2 composants enfants, qui ne passerons pas par le parent pour transmettre leur données.</p>
+<app-demo07-inputs></app-demo07-inputs>
+<app-demo07-outputs></app-demo07-outputs>

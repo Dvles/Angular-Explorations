@@ -1,0 +1,87 @@
+<h1>Démonstration 05 : Les directives</h1>
+<h2>Les directives de composants</h2>
+
+<h3>NgStyle</h3>
+
+<p>Nous avons actuellement une propriété TS qui défini un stock de produit : stock</p>
+<p>Selon le niveau du stock, celui-ci devra changer d'apparence.</p>
+<p [ngStyle]="{ color : (stock < 5)?'red':'green', fontWeight : (stock <= 0)?'bolder':'400' }">{{stock}}</p>
+<button (click)="subStock()" [disabled]="stock <= 0">Diminuer stock.</button>
+
+<p>Nous avons une autre valeur correspondant au niveau d'arrondissement d'un carré : roundPercent.</p>
+<p>Plus cette valeur est élevée, plus mon carré est un cercle.</p>
+<div>
+    <input id="roundPercent" type="range" min="0" max="50" step="10" [(ngModel)]="roundPercent">
+    <label for="roundPercent">{{roundPercent}}</label>
+</div>
+<div [ngStyle]="{backgroundColor : 'blue', borderRadius : roundPercent+'%', width : '50px', height : '50px'}"></div>
+<h3>NgClass</h3>
+<p>Nous avons un nombre défini : selectedNumber; qui va implémenter des class selon si il est divisible par 2, 3 ou 5</p>
+<p>selectedNumber : {{selectedNumber}}</p>
+<input type="range" [(ngModel)]="selectedNumber" step="1" min="0" max="20">
+
+<div [ngClass]="{square : true, divTwo : selectedNumber%2 == 0, divThree : selectedNumber%3 ==0, divFive: selectedNumber % 5 == 0}"></div>
+<h2>Les directives structurelles</h2>
+<p>ATTENTION : les directives structurelles utilisent toujours une astérisque comme premier caractère.</p>
+<p>ATTENTION : les directives structurelles ne peuvent être plusieurs sur une même balise...</p>
+<h3>*ngIf</h3>
+
+<p>Nous avons une case à cocher lié à une variable booléenne. Selon si la case est cochée ou non, une balise apparîtra.</p>
+<input type="checkbox" [(ngModel)]="caseCochee">
+<p *ngIf="caseCochee; else pascochee">Notre case à cochée est bien cochée, cette balise apparaît!</p>
+<p *ngIf="!caseCochee">Tiens, tiens, tiens! Une case à cocher... Que peut-il bien se produire si on la coche?</p>
+
+<ng-template #pascochee>
+    <p>Je suis une balise cachée, que l'on ne voit que lors de mon appel...</p>
+</ng-template>
+
+<h3>*ngFor</h3>
+<p>Dans notre composant, une collection nommée : list; va définir une liste de valeur texte.</p>
+<p>Le but du ngFor est de lister l'ensemble dans notre structure HTML, ici une balise 'ol'.</p>
+
+<h4>*ngFor sans indice</h4>
+<ol *ngIf="list.length > 0; else nolist">
+    <li *ngFor="let value of list">{{value}}<button (click)="subUserValue(value)">🚮</button></li>
+</ol>
+<ng-template #nolist>
+    <p>Pas d'élément pour le moment... En ajouter?</p>
+</ng-template>
+
+<h4>*ngFor avec indice</h4>
+<ol *ngIf="list.length > 0; else nolist">
+    <li *ngFor="let value of list; let i = index">{{value}}<button (click)="subUserIndex(i)">🚮</button></li>
+</ol>
+
+<div>
+    <input type="text" [(ngModel)]="newUserValue">
+    <button (click)="addNewUserValue()">Ajouter</button>
+</div>
+<h3>[ngSwitch] | *ngSwitchCase | *ngSwitchDefault</h3>
+<p>Nous avons un nombre défini : selectedNumber; qui va changer la structure de votre html, selon s'il est égale 2, 3, 5 ou 10</p>
+<p>selectedNumber : {{selectedNumber}}</p>
+<input type="range" [(ngModel)]="selectedNumber" step="1" min="0" max="20">
+
+<p [ngSwitch]="selectedNumber">
+    <span *ngSwitchCase="2">La valeur de selectedNumber est de 2</span>
+    <span *ngSwitchCase="3">La valeur de selectedNumber est de 3</span>
+    <span *ngSwitchCase="5">La valeur de selectedNumber est de 5</span>
+    <span *ngSwitchCase="10">La valeur de selectedNumber est de 10</span>
+    <span *ngSwitchDefault>La valeur de selectedNumber n'est pas 2, 3, 5 ou 10</span>
+</p>
+
+<h3>Comment utiliser plusieurs directives structurelles sur une seule balise</h3>
+<p>Il nous impossible d'effectuer une telle tâche. Nous ne pouvons avoir qu'une seule directive structurelle sur un balise.</p>
+<p>Mais nous pouvons utiliser un balise englobante pour séparer le comportement de nos directives.</p>
+<h4>&lt;ng-container&gt;</h4>
+<p>La balise ng-container a pour but de n'impacter la structure de votre HTML que par une directive structurelle, cette ne sera jamais visible pour l'utilisateur final.</p>
+<p>Nous allons avoir une liste de nombre : nbList; et notre but est d'afficher le contenu de la liste, mais seulement si le nombre est paire.</p>
+<ul>
+    <ng-container *ngFor="let value of nbList">
+        <li *ngIf="value % 2 == 0">{{value}}</li>
+    </ng-container>
+</ul>
+<h3>Custom Directive (Directive d'attribut)</h3>
+<p>Les custom directives sont des directives permettant d'appliquer un comportement spécifique à un objet HTML, qui aura la présence de la directive dans sa déclaration (par défaut un attribut).</p>
+<p>Nous avons créé un custom directive : <span appHighlight>HighlightDirective</span>; qui a pour sélecteur l'attribut : <span appHighlight>appHighlight</span></p>
+<p>Cette <span appHighlight>directive</span> aura pour comportement de modifier le style de notre élément HTML quand notre souris passe dessu.</p>
+<p appHighlight>Ce paragraphe est entièrement soumis à la directive.</p>

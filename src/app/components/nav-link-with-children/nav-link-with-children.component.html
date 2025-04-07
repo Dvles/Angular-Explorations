@@ -1,0 +1,15 @@
+<li appHiddingChildMenu>
+    <a [routerLink]="(parentUrl ?? '').concat(link.url ?? '')">{{link.title}}</a>
+    <ul class="childMenu hiddenMenu">
+        <ng-container *ngFor="let childLink of link.children">
+            <app-nav-link-with-children 
+                [parentUrl]="(parentUrl ?? '').concat(link.url ?? '')"
+                *ngIf="childLink.children && childLink.children.length > 0; else simplelink" 
+                [link]="childLink"
+                ></app-nav-link-with-children>
+            <ng-template #simplelink>
+                <app-nav-link [parentUrl]="(parentUrl ?? '').concat(link.url ?? '')" [link]="childLink"></app-nav-link>
+            </ng-template>
+        </ng-container>
+    </ul>
+</li>

@@ -1,0 +1,14 @@
+<h1>Démonstration 06 : Les Input/Output</h1>
+<h2>Données dans le parent</h2>
+<textarea [value]="students | json" cols="80" rows="20" disabled></textarea>
+
+<h2>Zone des enfants...</h2>
+<div>
+    <app-demo06-enfant 
+        (passTopOneEmitter)="passToTopOne($event)"
+        [student]="student" 
+        *ngFor="let student of students; let i = index"
+        >
+        <p>Identifiant : {{i + 1}}</p>
+    </app-demo06-enfant>
+</div>

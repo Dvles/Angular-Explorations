@@ -1,0 +1,8 @@
+<h1>Exercice 01 : Le chronomètre</h1>
+<h2>Le binding et le pipe</h2>
+
+<p>{{nbSeconds | chronoFormat }}</p>
+
+<button (click)="onStart()" [disabled]="fonctionChrono">Start</button>
+<button (click)="onPause()" [disabled]="!fonctionChrono">Pause</button>
+<button (click)="onReset()" [disabled]="nbSeconds == 0">Reset</button>
