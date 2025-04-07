@@ -9,15 +9,14 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
   styleUrl: './demo08.component.css'
 })
 export class Demo08Component {
-
   public myForm : FormGroup
 
   constructor(private _formBuilder : FormBuilder){
     this.myForm = this._formBuilder.group({
       firstName : [null, [Validators.required]],
       lastName : [null, [Validators.required]],
-      birthDate : [ formatDate(new Date(), 'yyyy-MM-dd','en'), [Validators.required]],
-      guests : this._formBuilder.array([])
+      birthDate : [ formatDate(new Date(), 'yyyy-MM-dd', 'en'), [Validators.required]],
+      guests : this._formBuilder.array([]),
     });
   }
 
@@ -25,7 +24,17 @@ export class Demo08Component {
     console.log(this.myForm);
   }
 
-  public getGuestsArray() : FormArray {
+  public getGuestArray() : FormArray {
     return this.myForm.get('guests') as FormArray;
+  }
+
+  public addNewGuestForm() : void {
+    this.getGuestArray().push(this._formBuilder.group(
+      {
+        firstName : [null, [Validators.required]],
+        lastName : [null, [Validators.required]],
+        birthDate : [ null, [Validators.required]],
+      }
+    ));
   }
 }

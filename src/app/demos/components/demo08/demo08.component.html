@@ -1,25 +1,46 @@
-<h1>Démonstration 08 - Les formulaires</h1>
+<h1>Démo 08 - Les formulaires</h1>
 
-<p>Créons des formulaires réactifs!</p>
+<p>Créons des formulaires réactifs</p>
 
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
     <fieldset>
-        <legend>Responsable : </legend>
-        <!-- div*3>label+input -->
+        <legend>Responsable :</legend>
         <div>
-            <label for="firstName">Prénom :</label>
+            <label for="firstName">Prénom</label>
             <input type="text" id="firstName" formControlName="firstName">
         </div>
         <div>
-            <label for="lastName">Nom de famille :</label>
+            <label for="lastName">Nom</label>
             <input type="text" id="lastName" formControlName="lastName">
         </div>
         <div>
-            <label for="birthDate">Date de naissance : </label>
+            <label for="birthDate">Date de naissance</label>
             <input type="date" id="birthDate" formControlName="birthDate">
         </div>
     </fieldset>
+
+    <fieldset>
+        <legend>Accompagnants</legend>
+        <button (click)="addNewGuestForm()">+</button>
+        <fieldset *ngFor="let guestForm of getGuestArray().controls; let i = index">
+            <legend>Accompagnant {{ i + 1 }}</legend>
+            <div>
+                <label [for]="'guest-'+ i +'-fn'">Prénom</label>
+                <input type="text" [id]="'guest-'+ i +'-fn'" formControlName="firstName">
+            </div>
+            <div>
+                <label [for]="'guest-'+ i +'-ln'">Nom</label>
+                <input type="text" [id]="'guest-'+ i +'-ln'" formControlName="lastName">
+            </div>
+            <div>
+                <label [for]="'guest-'+ i +'-bd'">Date de naissance</label>
+                <input type="date" [id]="'guest-'+ i +'-bd'" formControlName="birthDate">
+            </div>
+        </fieldset>
+    </fieldset>
+
     <div>
         <button type="submit">Enregistrer</button>
     </div>
 </form>
+ 
